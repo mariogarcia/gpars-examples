@@ -1,0 +1,51 @@
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+repositories{
+	mavenCentral()
+	mavenLocal()
+}
+
+/* Without this configuration resources can't be found through the classloader */
+sourceSets {
+    main { 
+      output.resourcesDir = "build/classes/main" 
+    }
+}
+
+dependencies{
+	testCompile "org.spockframework:spock-core:0.6-groovy-1.8"
+	compile "org.codehaus.gpars:gpars:0.12"
+	compile "joda-time:joda-time:1.6"
+	compile "log4j:log4j:1.2.14"
+	groovy localGroovy()
+}
+
+def gparsDemoGroup = "GPars Demo"
+
+task "tornado-sequential"(type: JavaExec){
+	description = "Dataflow: Get top three states with tornados of more than force 4" 
+	group = gparsDemoGroup
+
+	classpath = sourceSets.main.runtimeClasspath
+	main = "gpars.examples.dataflow.TornadoDemoSequential"
+}
+
+task "tornado-dataflow"(type: JavaExec){
+	description = "Dataflow: Loading the frequency and the states table in different tasks" 
+	group = gparsDemoGroup
+
+	classpath = sourceSets.main.runtimeClasspath
+	main = "gpars.examples.dataflow.TornadoDemoDataFlow"
+}
+
+task "f1-race"(type: JavaExec){
+	description = "Actors: simulating a f1 race with actors"
+	group = gparsDemoGroup
+
+	classpath = sourceSets.main.runtimeClasspath
+	main ="gpars.examples.actors.RaceService"
+}
+
+
