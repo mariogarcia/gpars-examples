@@ -5,6 +5,9 @@ import static groovyx.gpars.ParallelEnhancer.enhanceInstance
 import spock.lang.Specification
 import spock.lang.Shared
 
+/**
+ * This class has tests to show the way parallel helper methods can be used with GPars
+**/
 class ParallelArrayExamplesSpec extends Specification{
 	
 	@Shared def people = [
@@ -14,27 +17,28 @@ class ParallelArrayExamplesSpec extends Specification{
 	]
 
 	def "Finding people names under 30 and single"(){
-		when:	
+		when:"Asking for people over 30 and single "
 			def result = new ParallelArrayExamples().findAllPeopleNameOver30AndSingle(people)
-		then:
+		then: "We must find johnny and peter"
 			result == ["johnny","peter"]
 	}
 
 	def "Find people instances under 30"(){
-		when:
+		when: "Trying to find people under 30"
 			def result = new ParallelArrayExamples().findAllPeopleUnder30(people)
-		then:
+		then: "We just find one julia"
 			result.size() == 1
 			result.find{it}.name == "julia"
 	}
 
 	def "Find people with names larger than 5 characters"(){
-		when:
+		when: "Trying to find people with names greater than five characters"
+		 /* Adding GPars methods to the metaClass */
 			enhanceInstance(people)
 			def result = 
 				new ParallelArrayExamples().
 					findAllPeopleWithNamesGreaterThanFiveCharacters(people)
-		then:
+		then: "You should find only one"
 			result.size() == 1
 	}
 

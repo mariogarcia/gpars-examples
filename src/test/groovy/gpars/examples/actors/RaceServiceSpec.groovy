@@ -2,6 +2,10 @@ package gpars.examples.actors
 
 import spock.lang.Specification
 
+/**
+ * This test launches a races with three different pilots. At the end of
+ * the race there must be one winner, but could be anyone.
+*/
 class RaceServiceSpec extends Specification{
 
 	def "3 drivers just one winner"(){
@@ -11,9 +15,9 @@ class RaceServiceSpec extends Specification{
 				new Driver(name:'Sebastian Vettel',number:1),
 				new Driver(name:'Louis Hamilton',number:3)
 			])
-		when:
+		when: "The races starts"
 			def raceResult = new RaceService().go(race)	
-		then:
+		then: "At the end there must be a winner"
 			raceResult
 	}
 }

@@ -3,6 +3,10 @@ package gpars.examples.combine
 import spock.lang.Specification
 import java.math.MathContext
 
+/**
+ * This class just checks the results of an already finished race. Data is contained inside
+ * lap.csv inside the classpath.
+**/
 class LapSpec extends Specification{
 
 	def lapService
@@ -37,7 +41,7 @@ class LapSpec extends Specification{
 	def "Get distinct drivers from laps"(){
 		setup: "Invoking service method"
 			def drivers = lapService.findAllDrivers()
-		expect:
+		expect: "All drivers in test are included in the search result"
 			driver in drivers
 		where:
 			driver << [
@@ -63,9 +67,9 @@ class LapSpec extends Specification{
 	}
 
 	def "Get average time"(){
-		setup:
+		setup: "Calculating average time per lap"
 			def avgTime = lapService.avgTimePerLap
-		expect:
+		expect: "The right average time"
 			avgTime.toBigDecimal().round(new MathContext(7)) == 75.51075 
 	}
 
