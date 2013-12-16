@@ -9,23 +9,23 @@ repositories{
 
 /* Without this configuration resources can't be found through the classloader */
 sourceSets {
-    main { 
-      output.resourcesDir = "build/classes/main" 
+    main {
+      output.resourcesDir = "build/classes/main"
     }
 }
 
 dependencies{
-	testCompile "org.spockframework:spock-core:0.6-groovy-1.8"
-	compile "org.codehaus.gpars:gpars:0.12"
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+	compile "org.codehaus.gpars:gpars:1.1.0"
 	compile "joda-time:joda-time:1.6"
 	compile "log4j:log4j:1.2.14"
-	groovy localGroovy()
+    groovy "org.codehaus.groovy:groovy-all:2.1.0"
 }
 
 def gparsDemoGroup = "GPars Demo"
 
 task "tornado-sequential"(type: JavaExec){
-	description = "Dataflow: Get top three states with tornados of more than force 4" 
+	description = "Dataflow: Get top three states with tornados of more than force 4"
 	group = gparsDemoGroup
 
 	classpath = sourceSets.main.runtimeClasspath
@@ -33,7 +33,7 @@ task "tornado-sequential"(type: JavaExec){
 }
 
 task "tornado-dataflow"(type: JavaExec){
-	description = "Dataflow: Loading the frequency and the states table in different tasks" 
+	description = "Dataflow: Loading the frequency and the states table in different tasks"
 	group = gparsDemoGroup
 
 	classpath = sourceSets.main.runtimeClasspath
