@@ -1,4 +1,4 @@
-package gpars.examples.actors
+package gpars.examples.actors.race
 
 /**
  *  This class holds information passes between the steward and driver actors

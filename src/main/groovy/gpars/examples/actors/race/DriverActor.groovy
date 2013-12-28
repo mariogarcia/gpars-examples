@@ -1,4 +1,4 @@
-package gpars.examples.actors
+package gpars.examples.actors.race
 
 import groovyx.gpars.actor.DefaultActor
 
@@ -7,8 +7,8 @@ import static java.lang.Math.random
 
 /**
  * Once the driver starts sends a message to the race steward, telling him
- * he has already racing. Then every second the driver sends a message to the 
- * steward to tell him his position. He does that until the steward sends the 
+ * he has already racing. Then every second the driver sends a message to the
+ * steward to tell him his position. He does that until the steward sends the
  * message "finish" when the driver stops driving.
 **/
 class DriverActor extends DefaultActor{
@@ -23,10 +23,10 @@ class DriverActor extends DefaultActor{
 					stop()
 				}else {
 					driverInfo.distance += random()
-					reply driverInfo	
+					reply driverInfo
 					sleep(1000)
 				}
-			}			
+			}
 		}
 	}
 

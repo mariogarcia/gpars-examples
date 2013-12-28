@@ -45,7 +45,7 @@ task "f1-race"(type: JavaExec){
 	group = gparsDemoGroup
 
 	classpath = sourceSets.main.runtimeClasspath
-	main ="gpars.examples.actors.RaceService"
+	main ="gpars.examples.actors.race.RaceService"
 }
 
 

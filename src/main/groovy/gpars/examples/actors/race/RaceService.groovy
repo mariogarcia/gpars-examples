@@ -1,10 +1,10 @@
-package gpars.examples.actors
+package gpars.examples.actors.race
 
 import groovy.util.logging.Log4j
 import static groovyx.gpars.actor.Actors.actor
 
 /**
- * This class creates two type of actors, the one using only the DSL (racingSteward) and 
+ * This class creates two type of actors, the one using only the DSL (racingSteward) and
  * the drivers using inheritance (from DefaultActor).
 **/
 @Log4j
@@ -25,10 +25,10 @@ class RaceService{
 				}
 			}
 		}
-		def transformInDriverInfo = {new DriverInfo(driver:it)} 
+		def transformInDriverInfo = {new DriverInfo(driver:it)}
 		def transformInActor = {new DriverActor(driverInfo:it,raceSteward:racingSteward).start()}
 		def drivers = race.drivers.collect(transformInDriverInfo).collect(transformInActor)
-		
+
 		drivers*.join()
 		drivers
 	}

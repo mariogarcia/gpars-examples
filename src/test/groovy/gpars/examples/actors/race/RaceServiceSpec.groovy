@@ -1,4 +1,4 @@
-package gpars.examples.actors
+package gpars.examples.actors.race
 
 import spock.lang.Specification
 
@@ -16,7 +16,7 @@ class RaceServiceSpec extends Specification{
 				new Driver(name:'Louis Hamilton',number:3)
 			])
 		when: "The races starts"
-			def raceResult = new RaceService().go(race)	
+			def raceResult = new RaceService().go(race)
 		then: "At the end there must be a winner"
 			raceResult
 	}

@@ -1,4 +1,4 @@
-package gpars.examples.actors
+package gpars.examples.actors.race
 
 /**
  * This class holds information about the race such as name, distance and the drivers are going
@@ -9,6 +9,6 @@ class Race{
 	String name
 	Double distance
 
-	def drivers = []	
+	def drivers = []
 
 }
