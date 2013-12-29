@@ -48,4 +48,12 @@ task "f1-race"(type: JavaExec){
 	main ="gpars.examples.actors.race.RaceService"
 }
 
+task "chat-room"(type: JavaExec) {
+    description = "Actors: simulating a chat room"
+    group = gparsDemoGroup
+
+    classpath = sourceSets.main.runtimeClasspath
+    main = "gpars.examples.actors.chat.ChatRoom"
+}
+
 
